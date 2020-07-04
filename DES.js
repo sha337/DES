@@ -1,8 +1,7 @@
-
 function main(){
 	
 	// Taking inputs from the user
-	let plaintext = "Hi how are you doing";
+	let plaintext = "Hi hello bro";
 	let key = "12121212";
 
 	// Determining if padding is required
@@ -14,8 +13,8 @@ function main(){
     //  Decryption
     let decipheredtext = DESDecryption(key, ciphertext, isPaddingRequired);
 
-	console.log(ciphertext);
-	console.log(decipheredtext);
+	console.log('CipherText', ciphertext);
+	console.log('Decrypted', decipheredtext);
 
 }
 
@@ -43,7 +42,7 @@ const finalPermutationMatrix = [
 function DESEncryption(key, text, padding){
 
     // Adding padding if required
-    if (padding == true)
+    if (padding === true)
         text = addPadding(text);
 	
     //  Encryption
@@ -60,7 +59,7 @@ function DESDecryption(key, text, padding){
 	let plaintext = DES(text, key, padding, false);
 	
     // Remove padding if required
-    if (padding == true)
+    if (padding === true)
 		return removePadding(plaintext);
 	
     //  Returning plaintext
@@ -395,13 +394,14 @@ function binValue(val, bitSize){
     
     // convert val to binary value
     if(!isNaN(val)){
-        
         binVal = parseInt(val, 10).toString(2)
+        while(binVal.length < 8)  binVal = "0" + binVal;
     }
     else{
-        
         for (var i = 0; i < val.length; i++) {
-            binVal += val[i].charCodeAt(0).toString(2);
+            let charCode = val[i].charCodeAt(0).toString(2);
+            while(charCode.length < 8)  charCode = "0" + charCode;
+            binVal += charCode;
         }
     }
     
